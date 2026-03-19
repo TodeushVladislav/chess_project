@@ -1,0 +1,40 @@
+body {background-color: #131A22; font-size: 1.15rem; color: #F5F5DC; font-family: Georgia; line-height: 1.5; padding: 1.2rem; margin: 0}
+h1, h2, caption{font-size: 200%; color: #FFC; font-family: serif; margin:0; text-align: center;}
+h2{font-size: 150%;}
+a {
+    text-decoration: none;
+}
+a:link { color: #FFD700; }
+a:visited { color: #C0C0C0 !important;}
+a:hover { color: #FFFFFF; }
+#quote { font-style: italic; text-align:right;}
+#broadcast {border: 0; width: 850px; height: 500px; display: block; margin: 20px auto;}
+img {display: block; margin: auto; max-width: 400px; width: 100%; height: auto; border: 0;}
+.diagram-name {text-align: center; font-family: serif; font-style: italic;}
+.diagram-explanation {text-align: center;}
+
+table {
+    width: 100%; border-collapse: collapse; margin:0 auto; background-color: #1a222c;
+	font-family: Verdana; font-size: 0.95rem; text-align: center; border: 3px solid #4b5563;	
+}
+caption {font-size: 180%; font-weight: bold;}
+th {
+    background-color: #334155; color: #FFC; border: 1px solid #4b5563;
+	text-transform: uppercase; padding: 12px;
+}
+
+td {color: #F5F5DC; border: 1px solid #4b5563; padding: 10px; vertical-align: middle;}
+.table-picture {max-width: 150px; width: 100%}
+#small-table {width: 100%; max-width: 400px;}
+#embedded-table {width: 100%; border: 0; margin: 0;}
+#embedded-cell {padding: 0;}
+
+ul, ol, dl {
+    font-family: sans-serif; color: #F5F5DC; background-color: #1e2731;
+    margin: 25px 0; padding: 20px 45px;
+    border-left: 5px solid #FFD700; border-radius: 10px;
+}
+ul { list-style-type: square; }
+ol { list-style-type: lower-alpha; }
+dt { font-family: Georgia; font-weight: bold; color: #FFD700;}
+dd { font-style: italic; padding: 5px 0; border-bottom: 1px solid #4b5563;}
