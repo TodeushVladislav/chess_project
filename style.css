@@ -5,7 +5,7 @@ a {
     text-decoration: none;
 }
 a:link { color: #FFD700; }
-a:visited { color: #C0C0C0 !important;}
+a:visited { color: #C0C0C0;}
 a:hover { color: #FFFFFF; }
 #quote { font-style: italic; text-align:right;}
 #broadcast {border: 0; width: 850px; height: 500px; display: block; margin: 20px auto;}
