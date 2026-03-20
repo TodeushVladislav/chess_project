@@ -1,5 +1,5 @@
 body {background-color: #131A22; font-size: 1.15rem; color: #F5F5DC; font-family: Georgia; line-height: 1.5; padding: 1.2rem; margin: 0}
-h1, h2, caption{font-size: 200%; color: #FFC; font-family: serif; margin:0; text-align: center;}
+h1, h2, caption{font-size: 200%; color: #FFC; font-family: serif; margin:0; text-align: center; padding-bottom: 0.5rem; padding-top: 2rem; line-height:0;}
 h2{font-size: 150%;}
 a {
     text-decoration: none;
@@ -7,18 +7,15 @@ a {
 a:link { color: #FFD700; }
 a:visited { color: #C0C0C0;}
 a:hover { color: #FFFFFF; }
-#quote { font-style: italic; text-align:right;}
-#broadcast {border: 0; width: 850px; height: 500px; display: block; margin: 20px auto;}
-img {display: block; margin: auto; max-width: 400px; width: 100%; height: auto; border: 0;}
-.diagram-name {text-align: center; font-family: serif; font-style: italic; padding-bottom: 2rem;}
-.diagram-explanation {text-align: center;}
 p {text-indent: 20px;}
-
+img {display: block; margin: 0 auto; max-width: 400px; width: 100%; height: auto; border: 0;}
+.diagram-name {text-align: center; font-family: serif; font-style: italic; margin-top: 0; padding-bottom: 1rem; padding-top: 0.1rem;}
+.diagram-explanation {text-align: center;}
 table {
     width: 100%; border-collapse: collapse; margin:0 auto; background-color: #1a222c;
 	font-family: Verdana; font-size: 0.95rem; text-align: center; border: 3px solid #4b5563;	
 }
-caption {font-size: 180%; font-weight: bold;}
+caption {font-size: 180%; font-weight: bold; padding-bottom: 1.5rem;}
 th {
     background-color: #334155; color: #FFC; border: 1px solid #4b5563;
 	text-transform: uppercase; padding: 12px;
@@ -39,3 +36,5 @@ ul { list-style-type: square; }
 ol { list-style-type: lower-alpha; }
 dt { font-family: Georgia; font-weight: bold; color: #FFD700;}
 dd { font-style: italic; padding: 5px 0; border-bottom: 1px solid #4b5563;}
+#quote { font-style: italic; text-align:right;}
+#broadcast {border: 0; width: 850px; height: 500px; display: block; margin: 20px auto;}
