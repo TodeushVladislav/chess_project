@@ -5,8 +5,10 @@ a {
     text-decoration: none;
 }
 a:link { color: #FFD700; }
-a:visited { color: #C0C0C0;}
-a:hover { color: #FFFFFF; }
+a:visited { color: #B8860B;}
+a:hover { color: #FFFACD; text-decoration: underline;}
+a:active {color: #FFA500;}
+
 p {text-indent: 20px;}
 img {margin: 0; max-width: 400px; width: 100%; height: auto;}
 .diagram-explanation {text-align: center;}
