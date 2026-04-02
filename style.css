@@ -6,6 +6,7 @@ body {
     line-height: 1.5;
     padding: 1.2rem;
     margin: 0;
+	padding-top: 3rem;
 }
 
 img {
@@ -42,10 +43,7 @@ h1, h2, caption {
 h1 { font-size: 200%; }
 h2 { font-size: 150%; }
 
-#quote {
-    font-style: italic;
-    text-align: right;
-}
+#quote {font-style: italic; position: relative; left: 1rem; border-left: 3px solid #FFD700; margin: 1rem 0;}
 
 
 a { text-decoration: none; }
@@ -79,6 +77,9 @@ ul a {
 ol > li > b {
     color: #FFD700;
     font-size: 1.2rem;
+}
+ol > li:first-child {
+    text-transform: uppercase;
 }
 
 dt {
@@ -154,3 +155,22 @@ p + a {
     height: auto;
     border: 0;
 }
+#start-position{float:left; margin-top: 4rem; margin-left: 2rem;}
+#start-position-text{float:right; margin-right: 2rem;}
+.clearfix::after {content: ""; display: block;clear:both;}
+#pawn::before {content: "♙";}
+#knight::before {content: "♘";}
+#bishop::before {content: "♗";}
+#rook::before {content: "♖";}
+#queen::before {content: "♕";}
+#king::before {content: "♔";}
+#castling::before {content: "♖";}
+#castling::after {content: "♔";}
+.nav {position: fixed; top: 0; left: 0; width: 100%; box-sizing: border-box; background-color: #1e2731; border-bottom: 5px solid #FFD700;
+ padding: 1rem; margin: 0; list-style-type: none; text-align: center; border-left: none; border-radius: 0; height: 4rem;}
+.nav li { display: inline-block; margin: 0 1.5rem; vertical-align: middle;}
+.label {font-weight: bold; text-transform: uppercase;}
+
+.video-wrapper {position: relative; display: inline-block;}
+.live-indicator {position: absolute; top: 2rem; right: 4rem; background-color: #e74c3c; padding: 3px 10px; font-size: 10px; 
+		font-weight: bold;border-radius: 4px;}
