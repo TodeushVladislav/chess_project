@@ -5,8 +5,10 @@
 		<meta name = "author" content = "Тодеуш Владислав">
 		<title>Взяття на проході - головна</title>
 		<link rel = "stylesheet" type = "text/css" href = "style.css">
+		
 	</head>
 	<body>
+		<script>document.write('<h1>Шаховий сайт</h1>')</script>
 		<h1>Головна</h1>
 			<ul class="nav">
 				<li><a href = "index.html">Головна</a></li>
@@ -16,6 +18,22 @@
 			</ul>
 			<p>На нашому сайті Ви зможете поринути у світ цікавої гри - шахи. 
 			Тут Ви зустрінете коротку історію, чемпіонів, правила та зможете розв'язати кілька головоломок.</p>
+			<table>
+				<tr>
+					<td>
+						<button onclick="displayMe('Тодеуш', 'Владислав')">Вивести інформацію про розробника</button>
+					</td>
+					<td>
+						<button onclick="enterStrings()">Хочете порівняти рядки?</button>
+					</td>
+					<td>
+						<button onclick="changeBackground()">Змінити кольор фону на 30 секунд?</button>
+					</td>
+					<td>
+						<button onclick="anotherPage()">Перейти на сторінку із задачками?</button>
+					</td>
+				</tr>
+			</table>
 			<p>Шахи —  інтелектуальна гра на спеціальній дошці (шахівниці), яку поділено на 64 світлі й темні поля. 
 			Кожен з гравців має 16 шахових фігур: вісім пішаків, дві тури, двох коней, двох слонів, ферзя та короля. 
 			Фігури білого і чорного кольорів — один з гравців грає білими фігурами, другий — чорними.</p>
@@ -42,5 +60,24 @@
 				<span class="live-indicator">LIVE</span>
 				<iframe id="broadcast" src="https://lichess.org/embed/broadcast/tata-steel-chess-2026--challengers/round-13/jJs1KFbZ/ITAreLho"></iframe>
 			</div>
+			<script>
+				setTimeout (() => myGreetings(), 2000);
+				function myGreetings() {
+					alert("Вітаю на сайті про шахи!");
+					let userRating = prompt("Який твій рейтинг?", "1000");
+					console.log(userRating);
+					if (userRating !== null) {
+						let wantsToSee = confirm("Чудовий рейтинг - " + userRating + "! Хочеш переглянути шахові задачі?");
+						if (wantsToSee) {
+							if(confirm("Шукай розділ із діаграмами на сторінці 'Головоломки'\nПерейти на сторінку 'Головоломки'?")){
+								location.href="chess_tactics.html";
+							}
+						} else {
+							alert("Зрозумів, тоді просто приємного читання історії та правил.");
+						}
+					}
+				}
+			</script>
+			<script src="script.js"></script>
 	</body>
 </html>

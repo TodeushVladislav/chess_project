@@ -19,7 +19,7 @@
 			проте не проводилися представницькі турніри, аби зафіксувати статус чемпіона.</p>
 			<p>У 1993 році через суперечку Каспаров організував окрему від ФІДЕ <a href="https://www.fide.com/">(офіційний сайт)</a> - міжнародної організації з шахів, яка й проводить чемпіонські турніри
 			організацію ПША, яка організовувала паралельні з ФІДЕ чемпіонські турніри аж до 2006 року.</p>
-			<table>
+			<table id="main-champions-table">
 			<caption>Чемпіони світу</caption>
 			<tr>
 				<th colspan="5">Чемпіони з 1886 по 1993</th>
@@ -245,5 +245,17 @@
 				<td>Індія</td>
 			</tr>
 			</table>
+			<div id="table-editor-control">
+				<h3>Панель редагування таблиці</h3>
+				
+				<button type="button" onclick="makeTableEditable()">
+					Увімкнути режим редагування та видалення
+				</button>
+				
+				<button type="button" onclick="insertInteractiveRow()">
+					Додати новий інтерактивний рядок
+				</button>
+			</div>
+			<script src="script.js"></script>
 	</body>
 </html>
