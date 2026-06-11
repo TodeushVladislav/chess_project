@@ -494,7 +494,7 @@ button {color: #131A22; height: 2rem; width: auto; background: linear-gradient(1
  
 /* Привид при перетягуванні */
 #drag-ghost {
-    position: fixed;
+    position: absolute; /* було fixed, міняємо на absolute */
     pointer-events: none;
     z-index: 9999;
     opacity: 0.88;
@@ -517,6 +517,7 @@ button {color: #131A22; height: 2rem; width: auto; background: linear-gradient(1
 #drag-ghost .drag-label {
     font-size: 0.75rem;
     padding: 4px;
+	
 }
  
 /* Результат drop */

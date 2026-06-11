@@ -330,13 +330,203 @@ if (galleryControlsEl) {
     menu.filterAll();
 }
  
- 
-  
- 
- 
+   
 document.addEventListener("click", function(event) {
     let toggleId = event.target.dataset.toggleId;
     if (!toggleId) return;
     let target = document.getElementById(toggleId);
     if (target) target.hidden = !target.hidden;
+});
+
+
+
+
+//8
+let mouseGallery = document.getElementById("mouse-event-gallery");
+let mouseLog     = document.getElementById("mouse-log");
+ 
+function getCardName(el) {
+    if (!el) return null;
+    let card = el.closest ? el.closest(".drag-card") : null;
+    return card ? card.dataset.name : null;
+}
+ 
+function addLog(type, targetEl, relatedEl) {
+    if (!mouseLog) return;
+ 
+    let targetName   = getCardName(targetEl)   || (targetEl   ? targetEl.tagName   : "null");
+    let relatedName  = getCardName(relatedEl)  || (relatedEl  ? relatedEl.tagName  : "null");
+ 
+    let span = document.createElement("span");
+    span.className = type === "mouseover" ? "log-over" : "log-out";
+    let relClass = relatedEl ? "" : " log-null";
+ 
+    mouseLog.innerHTML +=
+        "<div class='" + span.className + "'>" +
+        (type === "mouseover" ? "▶ mouseover" : "◀ mouseout ") +
+        "  target=<b>" + targetName + "</b>" +
+        "  relatedTarget=<span class='" + relClass + "'>" + relatedName + "</span>" +
+        "</div>";
+ 
+    mouseLog.scrollTop = mouseLog.scrollHeight;
+}
+ 
+if (mouseGallery) {
+    mouseGallery.addEventListener("mouseover", function(event) {
+        let card = event.target.closest(".drag-card");
+        if (!card) return;
+        card.classList.add("hovered");
+        addLog("mouseover", event.target, event.relatedTarget);
+    });
+ 
+    mouseGallery.addEventListener("mouseout", function(event) {
+        let card = event.target.closest(".drag-card");
+        if (!card) return;
+        let toCard = event.relatedTarget ? event.relatedTarget.closest(".drag-card") : null;
+        if (toCard === card) return;
+        card.classList.remove("hovered");
+        addLog("mouseout", event.target, event.relatedTarget);
+    });
+}
+ 
+let logClear = document.getElementById("mouse-log-clear");
+if (logClear) {
+    logClear.onclick = function() { mouseLog.innerHTML = ""; };
+}
+ 
+ 
+let ghost          = null; 
+let draggedCard    = null; 
+let dragShiftX     = 0;
+let dragShiftY     = 0;
+let currentDroppable = null;
+ 
+function createGhost(card) {
+    let g = document.createElement("div");
+    g.id = "drag-ghost";
+    let img = card.querySelector("img");
+    let label = card.querySelector(".drag-label");
+    if (img) {
+        let imgClone = document.createElement("img");
+        imgClone.src = img.src;
+        imgClone.alt = img.alt;
+        g.appendChild(imgClone);
+    }
+    if (label) {
+        let lClone = document.createElement("div");
+        lClone.className = "drag-label";
+        lClone.textContent = label.textContent;
+        g.appendChild(lClone);
+    }
+    document.body.appendChild(g);
+    return g;
+}
+ 
+function moveGhost(pageX, pageY) {
+    if (!ghost) return;
+    ghost.style.left = (pageX - dragShiftX) + "px";
+    ghost.style.top  = (pageY - dragShiftY) + "px";
+}
+ 
+function enterDroppable(zone) {
+    zone.classList.add("drop-active");
+}
+function leaveDroppable(zone) {
+    zone.classList.remove("drop-active");
+}
+ 
+let dndWorkspace = document.getElementById("dnd-workspace");
+ 
+if (dndWorkspace) {
+    dndWorkspace.addEventListener("mousedown", function(event) {
+        let card = event.target.closest(".drag-card");
+        if (!card) return;
+        if (event.button !== 0) return;
+ 
+        draggedCard = card;
+ 
+ 
+        let rect = card.getBoundingClientRect();
+        dragShiftX = event.clientX - rect.left;
+        dragShiftY = event.clientY - rect.top;
+ 
+ 
+        ghost = createGhost(card);
+        ghost.style.width = card.offsetWidth + "px";
+ 
+        moveGhost(event.pageX, event.pageY);
+ 
+        card.classList.add("dragging");
+ 
+        event.preventDefault(); 
+    });
+}
+ 
+ 
+document.addEventListener("mousemove", function(event) {
+    if (!draggedCard || !ghost) return;
+ 
+    moveGhost(event.pageX, event.pageY);
+ 
+ 
+    ghost.hidden = true;
+    let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
+    ghost.hidden = false;
+ 
+    if (!elemBelow) return;
+ 
+    let droppableBelow = elemBelow.closest(".droppable");
+ 
+ 
+    if (currentDroppable !== droppableBelow) {
+        if (currentDroppable) leaveDroppable(currentDroppable);
+        currentDroppable = droppableBelow;
+        if (currentDroppable) enterDroppable(currentDroppable);
+    }
+});
+ 
+ 
+document.addEventListener("mouseup", function(event) {
+    if (!draggedCard || !ghost) return;
+ 
+ 
+    ghost.parentNode.removeChild(ghost);
+    ghost = null;
+ 
+ 
+    draggedCard.classList.remove("dragging");
+ 
+ 
+    if (currentDroppable) {
+        leaveDroppable(currentDroppable);
+ 
+ 
+        let hint = document.getElementById("dnd-drop-hint");
+ 
+ 
+        let existingCard = currentDroppable.querySelector(".drag-card");
+        if (existingCard) {
+            document.getElementById("dnd-source-zone").appendChild(existingCard);
+        }
+ 
+        currentDroppable.appendChild(draggedCard);
+        if (hint) hint.style.display = "none";
+ 
+ 
+        let result = document.getElementById("dnd-result");
+        let resultText = document.getElementById("dnd-result-text");
+        if (result && resultText) {
+            resultText.textContent = "Ваш вибір: " + draggedCard.dataset.name + " — відмінний смак!";
+            result.hidden = false;
+        }
+    }
+ 
+    currentDroppable = null;
+    draggedCard = null;
+});
+ 
+ 
+ 
+document.querySelectorAll(".drag-card, .drag-card img").forEach(function(el) {
+    el.ondragstart = function() { return false; };
 });

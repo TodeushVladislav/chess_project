@@ -285,10 +285,10 @@
 			</div>
 		</div>
 
-		<!-- Tooltip, що з'являється при hover -->
+
 		<div id="portrait-tooltip"></div>
 
-		<!-- Завдання 2: Делегування — меню-фільтр галереї через data-action + патерн «Поведінка» через data-toggle-id -->
+
 		<div id="gallery-controls">
 			<span>Фільтр за епохою:</span>
 			<button data-action="filterAll"      class="gallery-btn">Всі</button>
@@ -298,7 +298,7 @@
 			<button data-toggle-id="gallery-fact-box" class="gallery-btn __interesting-facts-button">📋 Цікаві факти</button>
 		</div>
 
-		<!-- Патерн «Поведінка»: блок показується/ховається через data-toggle-id -->
+
 		<div id="gallery-fact-box" hidden>
 			<b>💡 Цікаві факти про чемпіонів:</b>
 			<ul>
@@ -309,10 +309,47 @@
 			</ul>
 		</div>
 
-		<!-- Завдання 2б: Підсвічування рядків таблиці делегуванням (event.target на tbody) -->
+
 		<p class="label-description">
 			▼ Клікніть на будь-який рядок таблиці нижче — він підсвітиться (делегування подій)
 		</p>
+		
+		<h2>Події миші — інтерактивна галерея</h2>
+		<div id="mouse-event-gallery">
+			<div class="drag-card" id="drag-steinitz"   data-name="Стейніц"    draggable="false"><img src="img/steinitz.webp"   alt="Стейніц"    class="drag-pic"><div class="drag-label">Стейніц</div></div>
+			<div class="drag-card" id="drag-lasker"     data-name="Ласкер"     draggable="false"><img src="img/lasker.webp"     alt="Ласкер"     class="drag-pic"><div class="drag-label">Ласкер</div></div>
+			<div class="drag-card" id="drag-capablanca" data-name="Капабланка" draggable="false"><img src="img/capablanca.webp" alt="Капабланка" class="drag-pic"><div class="drag-label">Капабланка</div></div>
+			<div class="drag-card" id="drag-alekhine"   data-name="Алехін"     draggable="false"><img src="img/alekhine.webp"   alt="Алехін"     class="drag-pic"><div class="drag-label">Алехін</div></div>
+			<div class="drag-card" id="drag-tal"        data-name="Таль"       draggable="false"><img src="img/tal.webp"        alt="Таль"       class="drag-pic"><div class="drag-label">Таль</div></div>
+			<div class="drag-card" id="drag-kasparov"   data-name="Каспаров"   draggable="false"><img src="img/kasparov.webp"   alt="Каспаров"   class="drag-pic"><div class="drag-label">Каспаров</div></div>
+		</div>
+ 
+ 
+		<div id="mouse-log-wrap">
+			<div id="mouse-log-title">📋 Лог подій миші <span id="mouse-log-clear" title="Очистити">&times;</span></div>
+			<div id="mouse-log"></div>
+		</div>
+ 
+		<h2>Оберіть улюбленого чемпіона</h2>
+		<p>Перетягніть будь-який портрет у зону нижче.</p>
+ 
+		<div id="dnd-workspace">
+			<div id="dnd-source-zone">
+				<div class="dnd-zone-title">Портрети (перетягніть звідси)</div>
+				<div class="drag-card" id="dnd-fischer"  data-name="Фішер"   draggable="false"><img src="img/fischer.webp"  alt="Фішер"   class="drag-pic"><div class="drag-label">Фішер</div></div>
+				<div class="drag-card" id="dnd-karpov"   data-name="Карпов"  draggable="false"><img src="img/karpov.webp"   alt="Карпов"  class="drag-pic"><div class="drag-label">Карпов</div></div>
+				<div class="drag-card" id="dnd-carlsen"  data-name="Карлсен" draggable="false"><img src="img/carlsen.webp"  alt="Карлсен" class="drag-pic"><div class="drag-label">Карлсен</div></div>
+				<div class="drag-card" id="dnd-gukesh"   data-name="Гукеш"   draggable="false"><img src="img/gukesh.webp"   alt="Гукеш"   class="drag-pic"><div class="drag-label">Гукеш</div></div>
+			</div>
+ 
+			<div id="dnd-drop-zone" class="droppable">
+				<div id="dnd-drop-hint">♟ Перетягніть сюди</div>
+			</div>
+		</div>
+ 
+		<div id="dnd-result" hidden>
+			<span id="dnd-result-text"></span>
+		</div>
 			<script src="script.js"></script>
 	</body>
 </html>
