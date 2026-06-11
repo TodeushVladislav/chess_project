@@ -177,3 +177,166 @@ function insertInteractiveRow() {
         doneSpan.remove();
     }, 3000);
 }
+
+
+
+
+
+
+
+function glowOnHover(event) {
+    event.currentTarget.style.borderColor = "#FFD700";
+    event.currentTarget.style.boxShadow   = "0 0 14px 3px rgba(255,215,0,0.55)";
+}
+
+
+document.querySelectorAll(".portrait-card").forEach(function(card) {
+    card.onmouseout = function(event) {
+        event.currentTarget.style.borderColor = "#4b5563";
+        event.currentTarget.style.boxShadow   = "";
+        document.getElementById("portrait-tooltip").style.display = "none";
+    };
+});
+ 
+ 
+function showChampionAlert(event) {
+    let card  = event.currentTarget;
+    let name    = card.dataset.name;
+    let years   = card.dataset.years;
+    let country = card.dataset.country;
+    alert("♟ " + name + "\nРоки: " + years + "\nКраїна: " + country);
+}
+ 
+
+function logCurrentTarget(event) {
+    console.log("addEventListener: клік на", event.currentTarget.dataset.name,
+                "| event.currentTarget:", event.currentTarget);
+}
+ 
+document.querySelectorAll(".portrait-card").forEach(function(card) {
+    card.addEventListener("click", showChampionAlert);
+    card.addEventListener("click", logCurrentTarget);
+});
+ 
+ 
+ 
+ 
+ 
+let tooltipHandler = {
+    handleEvent(event) {
+        let card = event.currentTarget;
+        let tooltip = document.getElementById("portrait-tooltip");
+ 
+        if (event.type === "mousemove") {
+            tooltip.innerHTML =
+                "<b>" + card.dataset.name + "</b><br>" +
+                "📅 " + card.dataset.years + " · " + card.dataset.country + "<br>" +
+                "<i style='color:#aaa'>" + card.dataset.fact + "</i>";
+            tooltip.style.display = "block";
+            tooltip.style.left = (event.clientX + 14) + "px";
+            tooltip.style.top = (event.clientY - 10) + "px";
+        }
+    }
+};
+ 
+document.querySelectorAll(".portrait-card").forEach(function(card) {
+    card.addEventListener("mousemove", tooltipHandler);
+});
+ 
+ 
+ 
+
+setTimeout(function() {
+    document.querySelectorAll(".portrait-card").forEach(function(card) {
+        card.removeEventListener("mousemove", tooltipHandler);
+    });
+}, 20000);
+ 
+ 
+
+let championsTable = document.getElementById("main-champions-table");
+let selectedRow    = null;
+ 
+if (championsTable) {
+    championsTable.onclick = function(event) {
+        let td = event.target.closest("td");
+        if (!td) return;
+        let row = td.parentElement;
+        if (!row || row.querySelector("th")) return;
+ 
+        if (selectedRow) selectedRow.classList.remove("row-selected");
+        selectedRow = row;
+        selectedRow.classList.add("row-selected");
+    };
+}
+ 
+ 
+ 
+ 
+class GalleryMenu {
+    constructor(elem) {
+        this._elem = elem;
+        elem.onclick = this.onClick.bind(this);
+    }
+
+    filterAll() {
+        document.querySelectorAll(".portrait-card").forEach(c => c.classList.remove("hidden-card"));
+        this._setActive("filterAll");
+    }
+    filterSoviet() {
+        document.querySelectorAll(".portrait-card").forEach(function(card) {
+            let isSoviet = card.dataset.country && card.dataset.country.includes("СРС");
+            card.classList.toggle("hidden-card", !isSoviet);
+        });
+        this._setActive("filterSoviet");
+    }
+    filterModern() {
+        let modernNames = ["Карлсен", "Гукеш", "Дін"];
+        document.querySelectorAll(".portrait-card").forEach(function(card) {
+            let isModern = modernNames.some(n => card.dataset.name && card.dataset.name.includes(n));
+            card.classList.toggle("hidden-card", !isModern);
+        });
+        this._setActive("filterModern");
+    }
+    filterUSA() {
+        document.querySelectorAll(".portrait-card").forEach(function(card) {
+            let isWest = card.dataset.country && (
+                card.dataset.country.includes("США") ||
+                card.dataset.country.includes("Норвег") ||
+                card.dataset.country.includes("Захід")
+            );
+            card.classList.toggle("hidden-card", !isWest);
+        });
+        this._setActive("filterUSA");
+    }
+ 
+    _setActive(action) {
+        document.querySelectorAll(".gallery-btn[data-action]").forEach(btn => btn.classList.remove("active"));
+        let activeBtn = document.querySelector(".gallery-btn[data-action='" + action + "']");
+        if (activeBtn) activeBtn.classList.add("active");
+    }
+ 
+    onClick(event) {
+        let action = event.target.dataset.action;
+        if (action && typeof this[action] === "function") {
+            this[action]();
+        }
+    }
+}
+ 
+let galleryControlsEl = document.getElementById("gallery-controls");
+if (galleryControlsEl) {
+    let menu = new GalleryMenu(galleryControlsEl);
+    menu.filterAll();
+}
+ 
+ 
+  
+ 
+ 
+document.addEventListener("click", function(event) {
+    let toggleId = event.target.dataset.toggleId;
+    if (!toggleId) return;
+    let target = document.getElementById(toggleId);
+    if (target) target.hidden = !target.hidden;
+});

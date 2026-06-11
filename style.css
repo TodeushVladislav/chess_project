@@ -200,3 +200,337 @@ button {color: #131A22; height: 2rem; width: auto; background: linear-gradient(1
 #table-editor-control h3{
     color: #FFC; margin-top: 0;
 }
+
+      /* ======= ЛАБОРАТОРНА №7 — Галерея портретів ======= */
+#portrait-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    justify-content: center;
+    margin: 18px 0 10px;
+}
+ 
+.portrait-card {
+    position: relative;
+    width: 150px;
+    background: #1a222c;
+    border: 2px solid #4b5563;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: border-color 0.25s, transform 0.2s;
+}
+ 
+.portrait-card:hover {
+    transform: translateY(-4px);
+}
+ 
+.gallery-pic {
+    width: 150px;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+    margin: 0;
+    max-width: 150px;
+    pointer-events: none;
+}
+ 
+.portrait-name {
+    text-align: center;
+    padding: 6px 4px;
+    font-family: sans-serif;
+    font-size: 0.82rem;
+    color: #FFC;
+    background: #1e2731;
+}
+ 
+/* Tooltip */
+#portrait-tooltip {
+    display: none;
+    position: fixed;
+    background: #1e2731;
+    border: 2px solid #FFD700;
+    border-radius: 8px;
+    padding: 10px 14px;
+    max-width: 260px;
+    font-family: sans-serif;
+    font-size: 0.85rem;
+    color: #F5F5DC;
+    pointer-events: none;
+    z-index: 1000;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.5);
+    line-height: 1.5;
+}
+ 
+#portrait-tooltip b {
+    color: #FFD700;
+    font-size: 0.92rem;
+}
+ 
+/* Кнопки галереї */
+#gallery-controls {
+    margin: 14px 0 10px;
+    text-align: center;
+}
+#gallery-controls span{
+    color:#FFC; 
+    font-family:sans-serif; 
+    font-size:0.9rem; 
+    margin-right:8px;
+}
+.__interesting-facts-button{
+    margin-left:16px;
+}
+ 
+.gallery-btn {
+    margin: 4px 4px;
+    padding: 4px 14px;
+    height: auto;
+    font-size: 0.85rem;
+    font-family: sans-serif;
+    cursor: pointer;
+    border: 1px solid #FFD700;
+    border-radius: 4px;
+}
+ 
+.gallery-btn.active {
+    background: linear-gradient(135deg, #FFB800, #FFD700);
+    color: #131A22;
+    font-weight: bold;
+}
+
+#gallery-fact-box{
+    margin:14px 0; 
+    padding:14px 20px; 
+    background:#1e2731; 
+    border-left:4px solid #FFD700; 
+    border-radius:6px; 
+    font-family:sans-serif; 
+    font-size:0.95rem; 
+    color:#F5F5DC;
+}
+
+#gallery-fact-box b{
+    color:#FFD700;
+}
+
+#gallery-fact-box ul{
+    margin:8px 0 0 0; 
+    padding-left:20px; 
+    border-left: none;
+}
+.label-description{
+    text-align:center; 
+    font-family:sans-serif; 
+    font-size:0.9rem; 
+    color:#aaa; 
+    margin-bottom:4px;
+}
+ 
+/* Підсвічування рядків таблиці при делегуванні */
+#main-champions-table tr.row-selected td {
+    background-color: rgba(255, 215, 0, 0.12);
+    transition: background-color 0.2s;
+}
+ 
+.portrait-card.hidden-card {
+    display: none;
+}
+
+
+/* ======= ЛАБОРАТОРНА №8 — Події миші + Drag'n'Drop ======= */
+#mouse-event-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    justify-content: center;
+    margin: 16px 0 10px;
+}
+ 
+.drag-card {
+    position: relative;
+    width: 130px;
+    background: #1a222c;
+    border: 2px solid #4b5563;
+    border-radius: 8px;
+    overflow: visible;
+    cursor: grab;
+    user-select: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+ 
+.drag-card:active { cursor: grabbing; }
+ 
+.drag-card.hovered {
+    border-color: #FFD700;
+    box-shadow: 0 0 12px 2px rgba(255,215,0,0.45);
+}
+ 
+.drag-card.dragging {
+    opacity: 0.5;
+    border-color: #FFD700;
+}
+ 
+.drag-pic {
+    width: 130px;
+    height: 155px;
+    object-fit: cover;
+    display: block;
+    margin: 0;
+    max-width: 130px;
+    pointer-events: none;
+}
+ 
+.drag-label {
+    text-align: center;
+    padding: 5px 4px;
+    font-family: sans-serif;
+    font-size: 0.8rem;
+    color: #FFC;
+    background: #1e2731;
+    pointer-events: none;
+}
+ 
+/* Лог подій */
+#mouse-log-wrap {
+    margin: 10px auto;
+    max-width: 800px;
+    background: #0d1117;
+    border: 1px solid #4b5563;
+    border-radius: 6px;
+    font-family: monospace;
+    font-size: 0.8rem;
+}
+ 
+#mouse-log-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 12px;
+    background: #1e2731;
+    color: #FFC;
+    border-bottom: 1px solid #4b5563;
+    font-family: sans-serif;
+    font-size: 0.82rem;
+    border-radius: 6px 6px 0 0;
+}
+ 
+#mouse-log-clear {
+    cursor: pointer;
+    color: #aaa;
+    font-size: 1.1rem;
+    line-height: 1;
+}
+#mouse-log-clear:hover { color: #FFD700; }
+ 
+#mouse-log {
+    height: 110px;
+    overflow-y: auto;
+    padding: 6px 12px;
+    color: #8fbc8f;
+}
+ 
+#mouse-log .log-over  { color: #4ade80; }
+#mouse-log .log-out   { color: #f87171; }
+#mouse-log .log-null  { color: #94a3b8; font-style: italic; }
+ 
+/* DnD workspace */
+#dnd-workspace {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin: 16px 0;
+}
+ 
+#dnd-source-zone {
+    background: #1a222c;
+    border: 2px solid #4b5563;
+    border-radius: 10px;
+    padding: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    max-width: 360px;
+}
+ 
+.dnd-zone-title {
+    width: 100%;
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 0.82rem;
+    color: #94a3b8;
+    margin-bottom: 4px;
+    pointer-events: none;
+}
+ 
+#dnd-drop-zone {
+    width: 180px;
+    min-height: 220px;
+    background: #131A22;
+    border: 3px dashed #4b5563;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.2s, background 0.2s;
+    position: relative;
+}
+ 
+#dnd-drop-zone.drop-active {
+    border-color: #FFD700;
+    background: rgba(255,215,0,0.07);
+}
+ 
+#dnd-drop-hint {
+    color: #4b5563;
+    font-family: sans-serif;
+    font-size: 0.9rem;
+    text-align: center;
+    pointer-events: none;
+    padding: 12px;
+}
+ 
+/* Привид при перетягуванні */
+#drag-ghost {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.88;
+    border-radius: 8px;
+    border: 2px solid #FFD700;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.5);
+    overflow: hidden;
+    background: #1a222c;
+}
+ 
+#drag-ghost img {
+    width: 110px;
+    height: 130px;
+    object-fit: cover;
+    display: block;
+    margin: 0;
+    max-width: 110px;
+}
+ 
+#drag-ghost .drag-label {
+    font-size: 0.75rem;
+    padding: 4px;
+}
+ 
+/* Результат drop */
+#dnd-result {
+    text-align: center;
+    margin: 10px 0 18px;
+    font-family: sans-serif;
+    font-size: 1rem;
+    color: #4ade80;
+    padding: 8px;
+    background: #1e2731;
+    border-left: 4px solid #4ade80;
+    border-radius: 4px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}

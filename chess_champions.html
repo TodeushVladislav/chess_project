@@ -256,6 +256,63 @@
 					Додати новий інтерактивний рядок
 				</button>
 			</div>
+			<h2>Інтерактивна галерея портретів</h2>
+
+		<div id="portrait-gallery">
+			<div class="portrait-card" data-name="Гаррі Каспаров"    data-years="1985—1993" data-country="СРСР / росія"   data-fact="Найдовше тримав перший рейтинг ФІДЕ — майже 20 років поспіль." onmouseover="glowOnHover(event)">
+				<img src="img/kasparov.webp"   alt="Каспаров"   class="gallery-pic">
+				<div class="portrait-name">Каспаров</div>
+			</div>
+			<div class="portrait-card" data-name="Анатолій Карпов"   data-years="1975—1985" data-country="СРСР"           data-fact="Зіграв понад 160 турнірів і переміг у більшості з них." onmouseover="glowOnHover(event)">
+				<img src="img/karpov.webp"     alt="Карпов"     class="gallery-pic">
+				<div class="portrait-name">Карпов</div>
+			</div>
+			<div class="portrait-card" data-name="Роберт Фішер"      data-years="1972—1975" data-country="США"            data-fact="Перший американець — чемпіон світу. Виграв матч у Спаського з рахунком 12,5:8,5." onmouseover="glowOnHover(event)">
+				<img src="img/fischer.webp"    alt="Фішер"      class="gallery-pic">
+				<div class="portrait-name">Фішер</div>
+			</div>
+			<div class="portrait-card" data-name="Магнус Карлсен"    data-years="2013—2023" data-country="Норвегія"       data-fact="Найвищий рейтинг в історії — 2882. Чемпіон 10 років поспіль." onmouseover="glowOnHover(event)">
+				<img src="img/carlsen.webp"    alt="Карлсен"    class="gallery-pic">
+				<div class="portrait-name">Карлсен</div>
+			</div>
+			<div class="portrait-card" data-name="Михайло Таль"      data-years="1960—1961" data-country="СРСР"           data-fact="«Чарівник з Риги» — уславився атакуючим стилем і неймовірними жертвами." onmouseover="glowOnHover(event)">
+				<img src="img/tal.webp"        alt="Таль"       class="gallery-pic">
+				<div class="portrait-name">Таль</div>
+			</div>
+			<div class="portrait-card" data-name="Доммараджу Гукеш"  data-years="з 2024"    data-country="Індія"          data-fact="Наймолодший чемпіон світу в історії — виграв титул у 18 років." onmouseover="glowOnHover(event)">
+				<img src="img/gukesh.webp"     alt="Гукеш"      class="gallery-pic">
+				<div class="portrait-name">Гукеш</div>
+			</div>
+		</div>
+
+		<!-- Tooltip, що з'являється при hover -->
+		<div id="portrait-tooltip"></div>
+
+		<!-- Завдання 2: Делегування — меню-фільтр галереї через data-action + патерн «Поведінка» через data-toggle-id -->
+		<div id="gallery-controls">
+			<span>Фільтр за епохою:</span>
+			<button data-action="filterAll"      class="gallery-btn">Всі</button>
+			<button data-action="filterSoviet"   class="gallery-btn">Радянська епоха</button>
+			<button data-action="filterModern"   class="gallery-btn">Сучасні</button>
+			<button data-action="filterUSA"      class="gallery-btn">США / Захід</button>
+			<button data-toggle-id="gallery-fact-box" class="gallery-btn __interesting-facts-button">📋 Цікаві факти</button>
+		</div>
+
+		<!-- Патерн «Поведінка»: блок показується/ховається через data-toggle-id -->
+		<div id="gallery-fact-box" hidden>
+			<b>💡 Цікаві факти про чемпіонів:</b>
+			<ul>
+				<li>Каспаров тримав перше місце в рейтингу майже безперервно з 1986 по 2005 рік.</li>
+				<li>Фішер у 1972 виграв матч «Сходу й Заходу» — найгучніше протистояння холодної війни в шахах.</li>
+				<li>Таль пожертвував фігуру в 1-й партії матчу проти Ботвинника і виграв весь матч.</li>
+				<li>Гукеш у 2024 став наймолодшим чемпіоном світу, випередивши рекорд Каспарова.</li>
+			</ul>
+		</div>
+
+		<!-- Завдання 2б: Підсвічування рядків таблиці делегуванням (event.target на tbody) -->
+		<p class="label-description">
+			▼ Клікніть на будь-який рядок таблиці нижче — він підсвітиться (делегування подій)
+		</p>
 			<script src="script.js"></script>
 	</body>
 </html>
